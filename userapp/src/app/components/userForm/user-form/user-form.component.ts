@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UserServiceService } from '../../../services/user-service.service';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-form',
   standalone: true,
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule],
   templateUrl: './user-form.component.html',
   styleUrl: './user-form.component.css'
 })
@@ -36,12 +36,12 @@ export class UserFormComponent {
   }
  onsubmit(){
     if(this.isEditing && this.userId !== null){
-      this.userService.updateUser(this.userId,this.user).subscribe(updatedUser=>{
+      this.userService.updateUser(this.userId,this.user).subscribe(() => {
         this.router.navigate(['/users']);
       });
     }
     else{
-      this.userService.createUser(this.user).subscribe(newUser=>{
+      this.userService.createUser(this.user).subscribe(() => {
         this.router.navigate(['/users']);
       });
     }
